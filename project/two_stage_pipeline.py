@@ -68,8 +68,11 @@ def evaluate_loss_model(model, test_df, name, output_dir):
     preds = model.predict(test_df[['dist_1', 'dist_2', 'predicted_signal']])
     proba = model.predict_proba(test_df[['dist_1', 'dist_2', 'predicted_signal']])[:, 1]
     acc = accuracy_score(test_df['loss_th_25_next'], preds)
-    report = classification_report(test_df['loss_th_25_next'], preds)
+    report = classification_report(test_df['loss_th_25_next'], preds, zero_division=0)
     auc = roc_auc_score(test_df['loss_th_25_next'], proba)
+    print(f"{name} - Accuracy: {acc:.4f}, AUC: {auc:.4f}")
+    print(report)
+    
     RocCurveDisplay.from_predictions(test_df['loss_th_25_next'], proba)
     plt.title(f"{name} ROC (AUC={auc:.3f})")
     plt.grid(True)
@@ -109,16 +112,23 @@ def main():
     # Second model - Logistic
     logistic_model = train_loss_model(train_df, model_type='logistic')
     acc_log, report_log, auc_log, preds_log, prob_log = evaluate_loss_model(logistic_model, test_df, 'Logistic Regression', args.output_dir)
-
+    
+    
     # Second model - RF
     rf_model = train_loss_model(train_df, model_type='rf')
     acc_rf, report_rf, auc_rf, preds_rf, prob_rf = evaluate_loss_model(rf_model, test_df, 'Random Forest', args.output_dir)
-
+    
     results = {
         'Model': ['Logistic Regression', 'Random Forest'],
         'Accuracy': [acc_log, acc_rf],
         'AUC': [auc_log, auc_rf]
     }
+    # Add predicted probability as a new column to the original test_df
+    test_df_with_prob = test_df.copy()
+    test_df_with_prob['probability'] = prob_rf
+    prob_augmented_path = os.path.join(args.output_dir, "test_df_with_rf_probability.csv")
+    test_df_with_prob.to_csv(prob_augmented_path, index=False)
+    print(f"Test set with predicted probabilities saved to {prob_augmented_path}")
 
     save_outputs(args.output_dir, signal_model, rf_model, logistic_model, test_df, results)
 
