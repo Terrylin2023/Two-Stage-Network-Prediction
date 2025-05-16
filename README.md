@@ -7,9 +7,9 @@ This project implements a two-stage machine learning pipeline to:
 ## Structure
 - `two_stage_pipeline.py`: Main script to run the full pipeline.
 - `requirements.txt`: Python dependencies.
-- `outputs/`: Where models, plots, and metrics are saved.
+- `results/`: Where models, plots, and metrics are saved.
 
 ## Usage
 
-python two_stage_pipeline.py --data_path /Dataset/dataset_for_drl/dataset_for_drl.csv --output_dir outputs
+python two_stage_pipeline.py --data_path /Dataset/dataset_for_drl/dataset_for_drl.csv --output_dir results
 
