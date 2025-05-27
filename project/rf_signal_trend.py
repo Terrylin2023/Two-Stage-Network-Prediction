@@ -12,14 +12,14 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 LOOKBACK = 5
 PREDICT_FORWARD = 5
 SMOOTH_WINDOW = 3
-OUTPUT_DIR = "/home/cheng-sian/project/signal/results_trend_new" # change the path
+OUTPUT_DIR = "./results_trend_new" # change the path
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 FEATURE_COLS_NUMERIC = ['signal', 'dist_1', 'dist_2', 'signal_rollmean3', 'signal_diff', 'signal_rollstd3']
 FEATURE_COLS_CATEGORICAL = ['antenna', 'scenario']
 
 # Load and filter data
-df = pd.read_csv("/home/cheng-sian/project/avg_losses/drl/dataset_for_drl.csv") # change the path
+df = pd.read_csv("./drl/dataset_for_drl.csv") # change the path
 df = df[
     (df['bandwidth'] == 80) &
     (df['users'] == 'n1') &
