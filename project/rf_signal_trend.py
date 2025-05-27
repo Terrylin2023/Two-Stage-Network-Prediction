@@ -19,7 +19,7 @@ FEATURE_COLS_NUMERIC = ['signal', 'dist_1', 'dist_2', 'signal_rollmean3', 'signa
 FEATURE_COLS_CATEGORICAL = ['antenna', 'scenario']
 
 # Load and filter data
-df = pd.read_csv("/home/cheng-sian/project/signal/new_no_repeat_filtered_data.csv") # change the path
+df = pd.read_csv("/home/cheng-sian/project/avg_losses/drl/dataset_for_drl.csv") # change the path
 df = df[
     (df['bandwidth'] == 80) &
     (df['users'] == 'n1') &
