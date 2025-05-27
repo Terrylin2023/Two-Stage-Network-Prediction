@@ -2,8 +2,8 @@
 
 This repository contains two machine learning pipelines for wireless signal analysis and loss prediction:
 
-1. **Signal Trend Classification** (multi-step)
-2. **Loss Class Prediction + Object Detection Accuracy Mapping**
+1. **Signal Trend Classification** (multi-step) ( rf_signal_trend.py)
+2. **Loss Class Prediction + Object Detection Accuracy Mapping** ( rf_loss_task_mapping.py)
 
 Both models are built using Random Forests and applied on preprocessed wireless network datasets.
 
