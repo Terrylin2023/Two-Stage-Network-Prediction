@@ -9,22 +9,22 @@ Both models are built using Random Forests and applied on preprocessed wireless 
 
 ---
 
-## 1️⃣ Signal Trend Classification
+## Signal Trend Classification
 
-### 🧠 Task Description
+###  Task Description
 Predict the **trend** of signal strength (up / down / flat) for the next 5 seconds based on past measurements and device configuration.
 
-### 🛠 Model
+###  Model
 - Classifier: `RandomForestClassifier`
 - Prediction Targets: `slope_class` at T+1, T+2, ..., T+5
 - Input Features:
   - Numerical: `signal`, `dist_1`, `dist_2`, `signal_rollmean3`, `signal_diff`, `signal_rollstd3`
   - Categorical: `antenna`, `scenario` (one-hot encoded)
 
-### 📁 Output
+###  Output
 
 Each file:  
-📄 `signal_trend_predictions.csv`
+ `signal_trend_predictions.csv`
 
 | true_class_t1 | pred_class_t1 | conf_t1 | ... |
 |---------------|----------------|---------|-----|
@@ -36,12 +36,12 @@ Each file:
 
 ---
 
-## 2️⃣ Loss Class Prediction + Accuracy Mapping
+##  Loss Class Prediction + Accuracy Mapping
 
-### 🧠 Task Description
+###  Task Description
 Predict the **loss class (0%~100%)** for the next 5 seconds, then map each class to the **expected object detection accuracy** under different model architectures (VGG16, ResNet9, YOLOv3, YOLOv8).
 
-### 🛠 Model
+###  Model
 - Classifier: `RandomForestClassifier`
 - Input Features:
   - `dist_1`, `dist_2`, `signal`, `antenna`, `scenario`
@@ -54,7 +54,7 @@ Predict the **loss class (0%~100%)** for the next 5 seconds, then map each class
 ### 📁 Output
 
 Each file:  
-📄 `predicted_confidence_t{i}.csv`
+ `predicted_confidence_t{i}.csv`
 
 | loss_class_t1 | Predicted_Loss_Class_T1 | Decision_Confidence_T1 | Expected_Accuracy_VGG16_T1 | ... |
 |---------------|--------------------------|--------------------------|------------------------------|-----|
@@ -71,5 +71,4 @@ Each file:
 
 ---
 
-## 📂 Directory Structure
 
