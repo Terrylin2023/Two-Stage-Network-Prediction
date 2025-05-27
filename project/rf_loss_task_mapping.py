@@ -10,7 +10,7 @@ import joblib
 
 # Config
 DATA_PATH = "/home/cheng-sian/project/avg_losses/drl/dataset_for_drl.csv" # change the path
-OUTPUT_DIR = "/home/cheng-sian/project/prob/results_mul_class_multistep_rf_scenario" # change the path
+OUTPUT_DIR = "/home/cheng-sian/project/prob/results_mul_class_multistep_rf" # change the path
 TEST_SIZE = 0.2
 RANDOM_STATE = 42
 FEATURE_COLS = ['dist_1', 'dist_2', 'signal', 'antenna','scenario']
